@@ -69,3 +69,36 @@ queries = [
 ]
 
 scraper.run(queries)
+
+
+
+
+
+
+
+
+
+
+
+
+
+from linkedin_jobs_scraper.query import Query, QueryOptions, QueryFilters
+from linkedin_jobs_scraper.filters import RelevanceFilters, TimeFilters, TypeFilters, ExperienceLevelFilters, \
+    OnSiteOrRemoteFilters, IndustryFilters
+query = Query(
+    query='Engineer',
+    options=QueryOptions(
+        locations=['United States'],        
+        apply_link=True,
+        skip_promoted_jobs=True,
+        limit=5,
+        filters=QueryFilters(
+            relevance=RelevanceFilters.RECENT,
+            time=TimeFilters.MONTH,
+            type=[TypeFilters.FULL_TIME, TypeFilters.INTERNSHIP],
+            experience=[ExperienceLevelFilters.INTERNSHIP, ExperienceLevelFilters.MID_SENIOR],
+            on_site_or_remote=[OnSiteOrRemoteFilters.REMOTE],
+            industry=[IndustryFilters.IT_SERVICES],
+        )
+    )
+)
